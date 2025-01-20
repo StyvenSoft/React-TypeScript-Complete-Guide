@@ -62,3 +62,103 @@ delete newProduct.priceProduct;
 // Object.freeze(newProduct);
 // No permite añadir o eliminar propiedad
 // Object.seal(newProduct);
+
+const newClient = {
+    name: 'Hugo',
+    premium: true,
+    address: {
+        neighborhood: "Flores"
+    }
+};
+
+const { name: nameClient, address: { neighborhood }} = newClient;
+
+console.log(nameClient);
+console.log('Barrio: ', neighborhood);
+
+const shoppingCart = {
+    amount: 1,
+    ...newProduct,
+}
+
+console.log(shoppingCart);
+
+const newObjectClient = Object.assign(newProduct, newClient);
+console.log(newObjectClient);
+
+// Template string
+
+const productOne = 'Computer';
+const priceProductOne = 2850000;
+
+console.log(`El producto es: ${productOne} y su precio es: ${priceProductOne}`);
+
+// Arrays
+
+const technologies = [23, 25, 12, true, 'React.js'];
+console.log(technologies[4]);
+console.log(technologies[1]);
+
+const languages = ['HTML', 'CSS', 'javascript', 'typescript', 'java'];
+
+languages.push('Python')
+
+console.log(languages);
+
+const langFilter = 'CSS';
+
+const searchLang = languages.filter(function (tech) {
+    if (tech !== langFilter) {
+        return tech
+    }
+});
+
+console.log(searchLang);
+
+const searchLangMap = languages.map(function (tech) {
+    console.log(tech);
+})
+
+console.log(searchLangMap);
+
+// destructuring arrays
+
+const [ , , javascript] = languages;
+
+console.log(javascript);
+
+// Iteradores
+
+// 1. Foreach
+
+languages.forEach(element => {
+    console.log(element);
+});
+
+// 2. Map
+
+const newArrayLang = languages.map(function (tech) {
+    return tech
+})
+
+console.log(newArrayLang);
+
+// 3. for ...of
+
+for(let tech of languages) {
+    console.log(tech);
+}
+
+// Function declaration
+
+function sumNumbers(number1 = 0, number2 = 0) {
+    console.log(number1 + number2);
+}
+
+console.log(sumNumbers(22, 23));
+
+// Function expression
+
+const subtraction = function (number1, number2) {
+    console.log(number1 - number2);
+}
