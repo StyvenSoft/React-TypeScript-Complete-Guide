@@ -155,10 +155,48 @@ function sumNumbers(number1 = 0, number2 = 0) {
     console.log(number1 + number2);
 }
 
-console.log(sumNumbers(22, 23));
+sumNumbers(22, 23);
 
 // Function expression
 
 const subtraction = function (number1, number2) {
     console.log(number1 - number2);
 }
+
+// Arrow functions
+
+const division = (number1, number2) => console.log(number1 / number2);
+
+division(15, 3);
+
+// filter
+const numbersArray = [12, 52, 63, 13, 25, 35, 65];
+
+const newArrayFilter = languages.filter(tech => tech !== 'HTML');
+const resultFilterNumber = numbersArray.filter(number => number > 15);
+
+// Includes
+
+const resultLanguages = languages.includes('CSS');
+
+// Some (Devuelve si al menos uno cumple la condición)
+
+const resultSome = numbersArray.some(number => number > 15);
+
+if(resultSome) {
+    console.log('Hay elementos');
+} else {
+    console.log('No hay elementos');
+}
+
+// Find
+
+const resultFind = numbersArray.find( number => number > 15);
+
+// Every
+
+const resultEvery = numbersArray.every( number => number > 5);
+
+// Reduce
+
+const resultReduce = numbersArray.reduce((total, number) => total + number, 0);
