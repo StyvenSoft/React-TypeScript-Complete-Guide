@@ -200,3 +200,53 @@ const resultEvery = numbersArray.every( number => number > 5);
 // Reduce
 
 const resultReduce = numbersArray.reduce((total, number) => total + number, 0);
+
+// Operador lógico
+
+const balance = 1000;
+const pay = 12000;
+const card = false;
+
+if (balance > pay || card) {
+    console.log('Realizar pago');
+} else {
+    console.log('No se puede pagar');
+}
+
+// Operador ternario
+
+balance > pay ?
+    console.log('Pago') :
+    card ?
+        console.log('Pagar con tarjeta') :
+        console.log('No pago');
+
+// Optional chaining (?)
+
+const student = {
+    nameStudent: 'Steveen',
+    classStudent: 'Programación 01',
+    approved: true,
+};
+
+// Si existe Exams
+console.log(student.exams?.examOne);
+
+// Nullish coolescing (??)
+
+const page = null ?? 1;
+
+console.log(page);
+
+// Evaluation corto circuito
+
+const auth = true;
+
+if ({}) {
+    console.log('Truthy');
+} else {
+    console.log('false');
+}
+
+auth && console.log('Usuario autenticado');
+
