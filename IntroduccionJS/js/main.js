@@ -250,3 +250,36 @@ if ({}) {
 
 auth && console.log('Usuario autenticado');
 
+// Fetch API con Promises
+const urlData = 'https://jsonplaceholder.typicode.com/comments';
+
+fetch(urlData)
+    .then((response) => {
+        if(response.ok) {
+            return response.json() 
+        }
+        throw new Error('Se presento un error!');
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
+// Async - Await
+const consultAPI = async () => {
+    try {
+        const response = await fetch(ulrNew)
+        if(!response.ok) {
+            throw new Error('Hubo un error!')
+        }
+        const data = await response.json()
+        console.log(data);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+consultAPI();
+ 
