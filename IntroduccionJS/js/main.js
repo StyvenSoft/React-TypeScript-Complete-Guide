@@ -35,7 +35,7 @@ const newProduct = {
 const { nameProduct, priceProduct, available } = newProduct;
 console.log(nameProduct);
 
-// Objetct Literal enhacement
+// Object Literal enhacement
 
 const authenticated = true;
 const newUser = 'Steveen';
@@ -270,7 +270,7 @@ fetch(urlData)
 // Async - Await
 const consultAPI = async () => {
     try {
-        const response = await fetch(ulrNew)
+        const response = await fetch(urlData)
         if(!response.ok) {
             throw new Error('Hubo un error!')
         }
@@ -282,4 +282,30 @@ const consultAPI = async () => {
 }
 
 consultAPI();
- 
+
+// Performance
+const urlAll = 'https://jsonplaceholder.typicode.com/todos';
+
+const consultNewAPI = async () => {
+    try {
+        const start = performance.now();
+        
+        const [response, responseTwo] = await Promise.all([fetch(urlData), fetch(urlAll)])
+
+        const [data, dataTwo] = await Promise.all([response.json(), responseTwo.json()]);
+
+        console.log(data);
+        console.log(dataTwo);
+        
+        
+
+        const end = performance.now();
+
+        console.log(`El resultado es: ${end - start} ms`);
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+consultNewAPI();
