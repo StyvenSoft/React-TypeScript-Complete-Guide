@@ -40,7 +40,46 @@ linksAll.forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
         console.log('Update link click');
+        event.target.textContent = 'New click!';
         console.log(event.target);
     })
 });
+
+// Eventos del DOM - Input
+
+const inputNameEvent = document.querySelector('#nombre');
+inputNameEvent.addEventListener('input', (event) => {
+    // console.log('Escribiendo...');
+    console.log(event.target.value);
+});
+
+const inputPassword = document.querySelector('#password');
+inputPassword.addEventListener('input', functionPassword)
+
+function functionPassword() {
+    inputPassword.type = 'text'
+
+    setTimeout(() => {
+        inputPassword.type = 'password'
+    }, 3000);
+}
+
+// Eventos del DOM - Submit
+
+const formDOM = document.querySelector('#formulario');
+formDOM.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.querySelector('#nombre').value;
+    const password = document.querySelector('#password').value;
+    console.log(name);
+    
+    if(name === '' || password === '') {
+        console.log('Campos obligatorios');
+    } else {
+        console.log('Iniciando sesión');
+    }
+    console.log('Enviando formulario...');
+});
+
 
