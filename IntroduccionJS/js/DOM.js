@@ -73,13 +73,27 @@ formDOM.addEventListener('submit', (event) => {
     const name = document.querySelector('#nombre').value;
     const password = document.querySelector('#password').value;
     console.log(name);
+
+    // Prevenir nuevas alertas
+    const alertPrev = document.querySelector('.alerta');
+    alertPrev?.remove();
+
+    const alertNew = document.createElement('DIV');
+    alertNew.classList.add('alerta', 'text-white', 'uppercase', 'text-sm', 'text-center', 'p-2');
     
     if(name === '' || password === '') {
-        console.log('Campos obligatorios');
+        alertNew.textContent = 'Campos obligatorios';
+        alertNew.classList.add('bg-red-500');
     } else {
-        console.log('Iniciando sesión');
+        alertNew.textContent = 'Iniciando sesión';
+        alertNew.classList.add('bg-green-500');
     }
     console.log('Enviando formulario...');
+    formDOM.appendChild(alertNew);
+    
+    setTimeout(() => {
+        alertNew.remove();
+    }, 3000);
 });
 
 
