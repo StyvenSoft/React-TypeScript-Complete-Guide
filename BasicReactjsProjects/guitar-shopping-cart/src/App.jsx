@@ -8,14 +8,17 @@ function App() {
 
   const [data, setData] = useState(db);
   const [cart, setCart] = useState([])
+  const MAX_ITEM = 10;
+  const MIN_ITEM = 1;
 
   function addToCart(item) {
     console.log('Agregando');
-    const intemExists = cart.findIndex(guitar => guitar.id === item.id)
-    if (intemExists >= 0) {
+    const itemExists = cart.findIndex(guitar => guitar.id === item.id)
+    if (itemExists >= 0) {
+      if(cart[itemExists].quantity >= MAX_ITEM) return
       console.log('Existe');
       const updateCart = [...cart]
-      updateCart[intemExists].quantity++
+      updateCart[itemExists].quantity++
       setCart(updateCart)
     } else {
       item.quantity = 1
@@ -23,16 +26,52 @@ function App() {
     }
   }
 
+  function removeFromCart(id) {
+    console.log('Eliminando');
+    setCart(prevCart => prevCart.filter(guitar => guitar.id !== id))
+  }
+
+  function increaseQuantity(id) {
+    console.log('Incrementando', id);
+    const updateCart = cart.map(item => {
+      if (item.id === id && item.quantity < MAX_ITEM) {
+        return {
+          ...item,
+          quantity: item.quantity + 1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
+  }
+
+  function decreaseQuantity(id) {
+    console.log('decrementando');
+    const updateCart = cart.map(item => {
+      if (item.id === id && item.quantity > MIN_ITEM) {
+        return {
+          ...item,
+          quantity: item.quantity - 1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
+  }
+
   return (
     <>
-      <Header 
+      <Header
         cart={cart}
+        removeFromCart={removeFromCart}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
       />
 
-      <main class="container-xl mt-5">
-        <h2 class="text-center">Nuestra Colección</h2>
+      <main className="container-xl mt-5">
+        <h2 className="text-center">Nuestra Colección</h2>
 
-        <div class="row mt-5">
+        <div className="row mt-5">
           {data.map((guitar) => (
             <Guitar
               key={guitar.id}
@@ -44,9 +83,9 @@ function App() {
         </div>
       </main>
 
-      <footer class="bg-dark mt-5 py-5">
-        <div class="container-xl">
-          <p class="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
+      <footer className="bg-dark mt-5 py-5">
+        <div className="container-xl">
+          <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
         </div>
       </footer>
     </>
