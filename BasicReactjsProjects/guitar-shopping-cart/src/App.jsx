@@ -6,10 +6,19 @@ import { db } from './data/db'
 
 function App() {
 
-  const [data, setData] = useState(db);
-  const [cart, setCart] = useState([])
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart');
+    return localStorageCart ? JSON.parse(localStorageCart) : []
+  }
+
+  const [data] = useState(db);
+  const [cart, setCart] = useState(initialCart)
   const MAX_ITEM = 10;
   const MIN_ITEM = 1;
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   function addToCart(item) {
     console.log('Agregando');
@@ -59,6 +68,10 @@ function App() {
     setCart(updateCart)
   }
 
+  function clearCart() {
+    setCart([])
+  }
+
   return (
     <>
       <Header
@@ -66,6 +79,7 @@ function App() {
         removeFromCart={removeFromCart}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
+        clearCart={clearCart}
       />
 
       <main className="container-xl mt-5">

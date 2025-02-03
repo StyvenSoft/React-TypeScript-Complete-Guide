@@ -509,6 +509,16 @@ button:not(:disabled),
   --bs-btn-disabled-border-color: #262626;
 }
 
+.btn-green {
+  background-color: #198754;
+  color: #FFF;
+}
+
+.btn-green:hover {
+  background-color: #24ac6e;
+  color: #FFF;
+}
+
 .nav {
   --bs-nav-link-padding-x: 1rem;
   --bs-nav-link-padding-y: 0.5rem;
@@ -754,9 +764,7 @@ button:not(:disabled),
   }
 }
 .header {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/header.jpg");
-  /** TODO: Eliminar la sig linea **/
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/header.jpg");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/img/header.jpg");
   background-position: 50%;
   background-size: cover;
   position: relative;
