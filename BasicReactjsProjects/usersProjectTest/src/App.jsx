@@ -2,7 +2,7 @@ import { useFetch } from './useFetch'
 import './App.css'
 
 function App() {
-  const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users')
+  const { data, loading, error, handleCancelRequest } = useFetch('https://jsonplaceholder.typicode.com/users')
 
   return (
     <div className='App'>
@@ -16,6 +16,7 @@ function App() {
           ))}
         </ul>
       </div>
+      <button onClick={handleCancelRequest}>Cancel</button>
     </div>
   )
 }
