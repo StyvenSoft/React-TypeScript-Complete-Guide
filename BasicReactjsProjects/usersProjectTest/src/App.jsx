@@ -1,5 +1,6 @@
 import { useFetch } from './useFetch'
 import './App.css'
+import SunpenseData from './componets/SunpenseData'
 
 function App() {
   const { data, loading, error, handleCancelRequest } = useFetch('https://jsonplaceholder.typicode.com/users')
@@ -17,6 +18,8 @@ function App() {
         </ul>
       </div>
       <button onClick={handleCancelRequest}>Cancel</button>
+      <h1>Supense Data</h1>
+      <SunpenseData />
     </div>
   )
 }
