@@ -38,6 +38,9 @@ function registetClient(clientName) {
 registetClient('Steveen Echeverri');
 
 
+Number.MAX_VALUE;
+Number.MIN_VALUE;
 
+Math.random();
 
 
