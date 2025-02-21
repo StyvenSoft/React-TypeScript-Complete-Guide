@@ -19,11 +19,16 @@ export default function Form() {
  
     setActivity({
       ...activity,
-      [e.target.id]: e.target.value
+      [e.target.id]: isNumberField ? +e.target.value : e.target.value
     })
 
     console.log(e.target.id);
     console.log('Cambios');
+  }
+
+  const isValidActivity = () => {
+    const { nameActivity, calories } = activity
+    return nameActivity.trim() !== '' && calories > 0
   }
 
   return (
@@ -70,8 +75,9 @@ export default function Form() {
       </div>
       <input
         type="submit"
-        className="bg-gray-800 hover:bg-gray-700 w-full p-2 font-bold uppercase text-white"
+        className="bg-gray-800 hover:bg-gray-700 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
         value='Guardar'
+        disabled={!isValidActivity()}
       />
     </form>
   )
