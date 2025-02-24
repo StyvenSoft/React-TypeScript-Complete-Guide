@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { categories } from "../data/categories"
 import { Activity } from "../types"
 
@@ -15,15 +15,13 @@ export default function Form() {
     const isNumberField = ['category', 'calories'].includes(e.target.id)
 
     console.log(isNumberField);
-    
- 
+
+
     setActivity({
       ...activity,
       [e.target.id]: isNumberField ? +e.target.value : e.target.value
     })
 
-    console.log(e.target.id);
-    console.log('Cambios');
   }
 
   const isValidActivity = () => {
@@ -31,8 +29,17 @@ export default function Form() {
     return nameActivity.trim() !== '' && calories > 0
   }
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    console.log('Envio..');
+
+  }
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form className="space-y-5 bg-white shadow p-10 rounded-lg"
+      onSubmit={handleSubmit}
+    >
       <div className="grid grid-cols-1 gap-3">
         <label htmlFor="category" className="font-bold">Categoria: </label>
         <select
@@ -76,7 +83,7 @@ export default function Form() {
       <input
         type="submit"
         className="bg-gray-800 hover:bg-gray-700 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
-        value='Guardar'
+        value="Guardar"
         disabled={!isValidActivity()}
       />
     </form>
