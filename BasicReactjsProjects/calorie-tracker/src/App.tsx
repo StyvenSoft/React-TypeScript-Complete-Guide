@@ -6,6 +6,9 @@ function App() {
 
   const [state, dispatch] = useReducer(activityReducer, initialState)
 
+  console.log(state);
+  
+
   return (
     <>
       <header className="bg-gray-800 py-3">
@@ -21,6 +24,9 @@ function App() {
             dispatch={dispatch}
           />
         </div>
+      </section>
+      <section className="p-10 mx-auto max-w-4xl">
+
       </section>
     </>
   )
