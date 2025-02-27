@@ -8,7 +8,7 @@ function App() {
   const [state, dispatch] = useReducer(activityReducer, initialState)
 
   console.log(state);
-  
+
 
   return (
     <>
@@ -29,6 +29,7 @@ function App() {
       <section className="p-10 mx-auto max-w-4xl">
         <ActivityList
           activities={state.activities}
+          dispatch={dispatch}
         />
       </section>
     </>
