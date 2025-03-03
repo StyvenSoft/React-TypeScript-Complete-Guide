@@ -21,7 +21,7 @@ export const ActivityList = ({ activities, dispatch }: ActivityListProps) => {
 
     return (
         <>
-            <h2 className="text-4xl font-bold text-slate-600 text-center">Comida y actividades</h2>
+            <h2 className="text-4xl font-bold text-slate-600 text-center">Lista de Actividades</h2>
 
             {isEmptyActivities ? <p className="text-center py-10">No hay actividades aún registradas...</p> :
                 activities.map(activity => (
