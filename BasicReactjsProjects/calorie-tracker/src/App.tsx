@@ -45,7 +45,7 @@ function App() {
           dispatch={dispatch}
         />
       </section>
-      <section className="bg-gray-700 py-10">
+      <section className="bg-gray-600 py-10">
         <div className="max-w-4xl mx-auto">
           <CalorieTracker
             activities={state.activities}
