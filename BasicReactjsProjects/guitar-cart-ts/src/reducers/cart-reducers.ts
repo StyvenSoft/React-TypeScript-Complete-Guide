@@ -1,5 +1,8 @@
 import { db } from "../data/db"
-import { CartItem, Guitar } from "../types";
+import { CartItem, Guitar } from "../types"
+
+const MIN_ITEMS = 1
+const MAX_ITEMS = 5
 
 export type CartActions =
     { type: 'add-to-cart', payload: { item: Guitar } } |
@@ -24,8 +27,32 @@ export const cartReducer = (
     ) => {
 
     if (action.type === 'add-to-cart') {
+
+        const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
+        let updatedCart : CartItem[] = []
+
+        console.log('Add to cart test');
+
+        if(itemExists) { // existe en el carrito
+            updatedCart = state.cart.map(item => {
+                if (item.id === action.payload.item.id) {
+                    if (item.quantity < MAX_ITEMS) {
+                        return {...item, quantity: item.quantity + 1}
+                    } else {
+                        return item
+                    }
+                } else {
+                    return item
+                }
+            })
+        } else {
+            const newItem : CartItem = {...action.payload.item, quantity : 1}
+            updatedCart = [...state.cart, newItem]
+        }
+
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
 
@@ -40,4 +67,18 @@ export const cartReducer = (
             ...state
         }
     }
+
+    if (action.type === 'increase-quantity') {
+        return {
+            ...state
+        }
+    }
+
+    if (action.type === 'clear-cart') {
+        return {
+            ...state
+        }
+    }
+
+    return state;
 }
