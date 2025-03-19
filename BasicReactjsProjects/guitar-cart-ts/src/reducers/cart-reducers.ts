@@ -1,7 +1,7 @@
 import { db } from "../data/db"
 import { CartItem, Guitar } from "../types"
 
-const MIN_ITEMS = 1
+// const MIN_ITEMS = 1
 const MAX_ITEMS = 5
 
 export type CartActions =
@@ -57,8 +57,12 @@ export const cartReducer = (
     }
 
     if (action.type === 'remove-from-cart') {
+
+        const updatedCart = state.cart.filter(item => item.id !== action.payload.id)
+
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
 
