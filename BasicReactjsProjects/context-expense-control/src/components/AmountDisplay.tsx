@@ -1,0 +1,13 @@
+type AmountDisplayProps = {
+    label: string
+    amount: number
+}
+
+export default function AmountDisplay({label, amount} : AmountDisplayProps){
+  return (
+    <div className="text-2xl text-blue-500 font-bold">
+        {label}: {''}
+        <span className="font-black text-black">{amount}</span>
+    </div>
+  )
+}
