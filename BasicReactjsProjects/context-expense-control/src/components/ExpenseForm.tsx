@@ -5,6 +5,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import { ChangeEvent, useState } from "react";
 import { DraftExpense, Value } from "../types";
 import ErrorMessage from "./ErrorMessage";
+import { useBudget } from "../hooks/useBudget";
 
 export default function ExpenseForm() {
 
@@ -15,17 +16,18 @@ export default function ExpenseForm() {
         date: new Date()
     })
     const [error, setError] = useState('')
+    const { dispatch } = useBudget()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
         const isAmountField = ['amount'].includes(name)
         setExpense({
             ...expense,
-            [name] : isAmountField ? Number(value) : value
+            [name]: isAmountField ? Number(value) : value
         })
     }
 
-    const handleChangeDate = (value : Value) => {
+    const handleChangeDate = (value: Value) => {
         setExpense({
             ...expense,
             date: value
@@ -40,6 +42,9 @@ export default function ExpenseForm() {
             return
         }
 
+        // Se agrega un nuevo gasto
+        dispatch({ type: 'add-expense', payload: { expense } })
+
     }
 
     return (
@@ -50,7 +55,7 @@ export default function ExpenseForm() {
             {error && <ErrorMessage>{error}</ErrorMessage>}
             <div className="flex flex-col gap-2">
                 <label htmlFor="expenseName" className="text-xl">Nombre Gasto:</label>
-                <input 
+                <input
                     type="text"
                     id="expenseName"
                     placeholder="Añadir nombre del gasto"
@@ -63,7 +68,7 @@ export default function ExpenseForm() {
 
             <div className="flex flex-col gap-2">
                 <label htmlFor="amount" className="text-xl">Cantidad:</label>
-                <input 
+                <input
                     type="number"
                     id="amount"
                     placeholder="Añadir la cantidad de gasto"
@@ -76,7 +81,7 @@ export default function ExpenseForm() {
 
             <div className="flex flex-col gap-2">
                 <label htmlFor="category" className="text-xl">Categoría:</label>
-                <select 
+                <select
                     id="category"
                     className="bg-slate-100 p-2"
                     name="category"
@@ -104,7 +109,7 @@ export default function ExpenseForm() {
                 />
             </div>
 
-            <input 
+            <input
                 type="submit"
                 className="bg-blue-500 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
                 value={'Registrar Gasto'}
