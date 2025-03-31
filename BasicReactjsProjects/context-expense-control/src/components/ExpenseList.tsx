@@ -9,7 +9,7 @@ export default function ExpenseList() {
 
     return (
         <div className="mt-10">
-            {isEmpty ? <p className="text-gray-600 text-2xl font-bold">No hay gastos</p> : (
+            {isEmpty ? <p className="text-gray-600 text-2xl font-bold text-center">No hay gastos</p> : (
                 <>
                     <p className="text-gray-600 text-2xl font-bold my-5">Listado de Gastos</p>
                     {state.expenses.map(expense => (
