@@ -45,14 +45,16 @@ export const budgetReducer = (
     if (action.type === 'show-modal') {
         return {
             ...state,
-            modal: true
+            modal: true,
+            editingId: ''
         }
     }
 
     if (action.type === 'close-modal') {
         return {
             ...state,
-            modal: false
+            modal: false,
+            editingId: ''
         }
     }
 
@@ -92,7 +94,8 @@ export const budgetReducer = (
                 ? action.payload.expense 
                 : expense
             ),
-            modal: false
+            modal: false,
+            editindId: ''
         }
     }
 

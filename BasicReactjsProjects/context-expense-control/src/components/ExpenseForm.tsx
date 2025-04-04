@@ -71,7 +71,7 @@ export default function ExpenseForm() {
     return (
         <form className="space-y-5" onSubmit={handleSubmit}>
             <legend className="uppercase text-center text-2xl font-black border-b-4 border-blue-400 py-2">
-                Nuevo Gasto
+                {state.editingId ? 'Guardar Cambios' : 'Nuevo Gasto'}
             </legend>
             {error && <ErrorMessage>{error}</ErrorMessage>}
             <div className="flex flex-col gap-2">
@@ -133,7 +133,7 @@ export default function ExpenseForm() {
             <input
                 type="submit"
                 className="bg-blue-500 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-                value={'Registrar Gasto'}
+                value={state.editingId ? 'Guardar Cambios' : 'Registrar Gasto'}
             />
         </form>
     )
