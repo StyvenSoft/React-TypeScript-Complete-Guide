@@ -16,7 +16,7 @@ export default function ExpenseForm() {
         date: new Date()
     })
     const [error, setError] = useState('')
-    const { dispatch, state } = useBudget()
+    const { dispatch, state, remainingBudget } = useBudget()
 
     useEffect(() => {
         if (state.editingId) {
@@ -46,8 +46,13 @@ export default function ExpenseForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (Object.values(expense).includes('')) {
-            console.log('Error');
             setError('Todos los campos son obligatorios')
+            return
+        }
+
+        // Validar limite de presupuesto
+        if (expense.amount > remainingBudget) {
+            setError('El gasto se sale del presupuesto')
             return
         }
 
