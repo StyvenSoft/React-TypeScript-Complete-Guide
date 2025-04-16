@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form"
 import Error from "./Error"
+import { DraftPatient } from "../types";
+import { usePatientStore } from "../store";
 
 export default function PatientForm() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const registerPatient = () => {
-
+    const { addPatient } = usePatientStore()
+    const { register, handleSubmit, formState: { errors } } = useForm<DraftPatient>()
+    const registerPatient = (data: DraftPatient) => {
+        addPatient(data)
     }
     return (
+
         <div className="md:w-1/2 lg:w-2/5 mx-5">
             <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
 
@@ -31,21 +35,12 @@ export default function PatientForm() {
                         type="text"
                         placeholder="Nombre del Paciente"
                         {...register('name', {
-                            required: 'El nombre del paciente es obligatorio',
-                            maxLength: {
-                                value: 8,
-                                message: 'Máximo 8 caracteres'
-                            }
+                            required: 'El nombre del paciente es obligatorio'
                         })}
                     />
                     {errors.name && (
                         <Error>
-                            {errors.name?.message?.toString()}
-                        </Error>
-                    )}
-                    {errors.maxLength && (
-                        <Error>
-                            {errors.maxLength?.message?.toString()}
+                            {errors.name?.message}
                         </Error>
                     )}
                 </div>
@@ -65,7 +60,7 @@ export default function PatientForm() {
                     />
                     {errors.caretaker && (
                         <Error>
-                            {errors.caretaker?.message?.toString()}
+                            {errors.caretaker?.message}
                         </Error>
                     )}
                 </div>
@@ -89,7 +84,7 @@ export default function PatientForm() {
                     />
                     {errors.email && (
                         <Error>
-                            {errors.email?.message?.toString()}
+                            {errors.email?.message}
                         </Error>
                     )}
                 </div>
@@ -102,7 +97,15 @@ export default function PatientForm() {
                         id="date"
                         className="w-full p-3  border border-gray-100"
                         type="date"
+                        {...register("date", {
+                            required: 'la fecha de alta es obligatoria'
+                        })}
                     />
+                    {errors.date && (
+                        <Error>
+                            {errors.date?.message}
+                        </Error>
+                    )}
                 </div>
 
                 <div className="mb-5">
