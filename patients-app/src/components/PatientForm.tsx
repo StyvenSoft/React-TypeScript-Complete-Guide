@@ -116,7 +116,13 @@ export default function PatientForm() {
                         id="symptoms"
                         className="w-full p-3  border border-gray-100"
                         placeholder="Síntomas del paciente"
-                    ></textarea>
+                        {...register('symptoms', {
+                            required: 'Los síntomas son obligatorios'
+                        })}
+                    />
+                    { errors.symptoms && (
+                        <Error>{errors.symptoms?.message?.toString()}</Error>
+                    )}
                 </div>
 
                 <input
