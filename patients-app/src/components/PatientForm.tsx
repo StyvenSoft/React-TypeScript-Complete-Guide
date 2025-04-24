@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 export default function PatientForm() {
 
-    const { addPatient, activeId, patients } = usePatientStore()
+    const { addPatient, activeId, patients, updatePatient } = usePatientStore()
     const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<DraftPatient>()
 
     useEffect(() => {
-        if(activeId) {
-            const activePatient = patients.filter( patient => patient.id === activeId)[0]
+        if (activeId) {
+            const activePatient = patients.filter(patient => patient.id === activeId)[0]
             setValue('name', activePatient.name)
             setValue('caretaker', activePatient.caretaker)
             setValue('date', activePatient.date)
@@ -19,12 +19,16 @@ export default function PatientForm() {
             setValue('symptoms', activePatient.symptoms)
         }
     }, [activeId])
-    
+
     const registerPatient = (data: DraftPatient) => {
-        addPatient(data)
+        if (activeId) {
+            updatePatient(data)
+        } else {
+            addPatient(data)
+        }
         reset()
     }
-    
+
     return (
 
         <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -135,7 +139,7 @@ export default function PatientForm() {
                             required: 'Los síntomas son obligatorios'
                         })}
                     />
-                    { errors.symptoms && (
+                    {errors.symptoms && (
                         <Error>{errors.symptoms?.message?.toString()}</Error>
                     )}
                 </div>
