@@ -1,8 +1,16 @@
+import styles from "./App.module.css";
+import Form from "./components/Form/Form";
+
 function App() {
 
   return (
     <>
-      <h1>Weather app</h1>
+      <h1 className={styles.title}>Weather app</h1>
+
+      <div className={styles.container}>
+        <p><Form /></p>
+        <p>2</p>
+      </div>
     </>
   )
 }
