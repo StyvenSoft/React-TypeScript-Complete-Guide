@@ -1,0 +1,8 @@
+.alert {
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    background-color: rgb(187, 59, 59);
+    padding: 10px;
+}
+
