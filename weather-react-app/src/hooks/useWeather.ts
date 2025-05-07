@@ -1,6 +1,7 @@
 import axios from "axios";
 import { z } from "zod";
 import { SearchType } from "../types";
+import { useState } from "react";
 
 const Weather = z.object({
     name: z.string(),
@@ -11,9 +12,18 @@ const Weather = z.object({
     })
 })
 
-type Weather = z.infer<typeof Weather>
+export type Weather = z.infer<typeof Weather>
 
 export default function useWeather() {
+
+    const [weather, setWeather] = useState<Weather>({
+        name: '',
+        main: {
+            temp: 0,
+            temp_max: 0,
+            temp_min: 0,
+        }
+    })
 
     const fetchWeather = async (search: SearchType) => {
 
@@ -31,8 +41,7 @@ export default function useWeather() {
             const result = Weather.safeParse(weatherResult)
             console.log(result);
             if (result.success) {
-                console.log(result.data.name);
-                
+                setWeather(result.data)
             }
             
         } catch (error) {
@@ -40,7 +49,8 @@ export default function useWeather() {
         }
     }
 
-    return (
+    return {
+        weather,
         fetchWeather
-    )
+    }
 }
