@@ -1,17 +1,17 @@
 import axios from "axios";
-import { SearchType, Weather } from "../types";
+import { z } from "zod";
+import { SearchType } from "../types";
 
-function isWeatherResponse(weather: unknown) {
-    return (
-        Boolean(weather) &&
-        typeof weather === 'object' &&
-        typeof (weather as Weather).name === 'string' &&
-        typeof (weather as Weather).main.temp === 'string' &&
-        typeof (weather as Weather).main.temp_max === 'string' &&
-        typeof (weather as Weather).main.temp_min === 'string'
-    )
-}
+const Weather = z.object({
+    name: z.string(),
+    main: z.object({
+        temp: z.number(),
+        temp_max: z.number(),
+        temp_min: z.number(),
+    })
+})
 
+type Weather = z.infer<typeof Weather>
 
 export default function useWeather() {
 
@@ -28,12 +28,12 @@ export default function useWeather() {
 
             // console.log(weatherURL);
             const { data: weatherResult } = await axios(weatherURL)
-            const result = isWeatherResponse(weatherResult)
-            
-            if(result) {
-                console.log(weatherResult.name);
+            const result = Weather.safeParse(weatherResult)
+            console.log(result);
+            if (result.success) {
+                console.log(result.data.name);
+                
             }
-            
             
         } catch (error) {
             console.log(error);
