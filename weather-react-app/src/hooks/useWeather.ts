@@ -25,9 +25,12 @@ export default function useWeather() {
         }
     })
 
+    const [loading, setLoading] = useState(false)
+
     const fetchWeather = async (search: SearchType) => {
 
         const appId = import.meta.env.VITE_API_KEY
+        setLoading(true)
         try {
             const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`
             const { data } = await axios(geoURL)
@@ -46,6 +49,8 @@ export default function useWeather() {
 
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -53,6 +58,7 @@ export default function useWeather() {
 
     return {
         weather,
+        loading,
         fetchWeather,
         hasWeatherData
     }
