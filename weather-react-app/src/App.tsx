@@ -15,7 +15,9 @@ function App() {
         <Form
           fetchWeather={fetchWeather}
         />
-        <WeatherDetail />
+        <WeatherDetail
+          weather={weather}
+        />
       </div>
     </>
   )

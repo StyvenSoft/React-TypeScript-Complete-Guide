@@ -1,5 +1,11 @@
-export default function WeatherDetail() {
+import { Weather } from "../../hooks/useWeather"
+
+type WeatherDetailPros = {
+  weather: Weather
+}
+
+export default function WeatherDetail({weather} : WeatherDetailPros) {
   return (
-    <div>WeatherDetail</div>
+    <div>Clima de:</div>
   )
 }
