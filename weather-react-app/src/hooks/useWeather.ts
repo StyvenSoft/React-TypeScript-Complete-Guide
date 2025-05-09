@@ -14,26 +14,38 @@ const Weather = z.object({
 
 export type Weather = z.infer<typeof Weather>
 
+const initialState = {
+    name: '',
+    main: {
+        temp: 0,
+        temp_max: 0,
+        temp_min: 0,
+    }
+}
+
 export default function useWeather() {
 
-    const [weather, setWeather] = useState<Weather>({
-        name: '',
-        main: {
-            temp: 0,
-            temp_max: 0,
-            temp_min: 0,
-        }
-    })
-
+    const [weather, setWeather] = useState<Weather>(initialState)
     const [loading, setLoading] = useState(false)
+    const [notFount, setNotFound] = useState(false)
 
     const fetchWeather = async (search: SearchType) => {
 
         const appId = import.meta.env.VITE_API_KEY
         setLoading(true)
+        setWeather(initialState)
         try {
-            const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`
+            const geoURL = `https://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`
             const { data } = await axios(geoURL)
+
+            if (!data[0]) {
+                setNotFound(true);
+
+                setTimeout(() => {
+                    setNotFound(false);
+                }, 3000);
+                return
+            }
             const lat = data[0].lat
             const lon = data[0].lon
 
@@ -59,6 +71,7 @@ export default function useWeather() {
     return {
         weather,
         loading,
+        notFount,
         fetchWeather,
         hasWeatherData
     }

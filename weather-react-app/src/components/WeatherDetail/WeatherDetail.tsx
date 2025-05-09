@@ -11,8 +11,8 @@ export default function WeatherDetail({ weather }: WeatherDetailPros) {
       <h1>Clima de: {weather.name}</h1>
       <h2 className={styles.currentTemp}>{formatTemperature(weather.main.temp)}&deg;C</h2>
       <div className={styles.temperatures}>
-        <h3>Min: <span>{formatTemperature(weather.main.temp_min)}&deg;C</span></h3>
-        <h3>Min: <span>{formatTemperature(weather.main.temp_max)}&deg;C</span></h3>
+        <h3>Temperatura Minima: <span>{formatTemperature(weather.main.temp_min)}&deg;C</span></h3>
+        <h3>Temperatura Máxima: <span>{formatTemperature(weather.main.temp_max)}&deg;C</span></h3>
       </div>
     </div>
   )
