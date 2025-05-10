@@ -7,3 +7,28 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 }
+
+.container {
+  max-width: 60rem;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3.8rem;
+  margin-top: 5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.title span {
+  color: aqua;
+}
+
+.content {
+  margin-top: 5rem;
+  padding: 6rem 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: #fff 0pc 4px 12px;
+}
