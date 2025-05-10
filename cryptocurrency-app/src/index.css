@@ -31,4 +31,37 @@
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: #fff 0pc 4px 12px;
+  color: #242424;
+  font-size: 1.5rem;
+}
+
+.form,
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form label {
+  color: #000;
+}
+
+.form select {
+  background-color: #ececeb;
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+
+.form [type="submit"] {
+  background-color: aqua;
+  color: #000;
+  border: none;
+  padding: 1rem;
+  font-weight: 900;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-top: 2rem;
 }
