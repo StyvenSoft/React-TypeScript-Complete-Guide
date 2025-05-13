@@ -14,6 +14,7 @@ export const useCryptoStore = create<CryptoStore>()(devtools((set) => ({
     cryptocurrencies: [],
     // Objeto con atributos del CryptoPriceSchema
     result: {} as CryptoPrice,
+    
     fetchCrypto: async () => {
         const cryptocurrencies = await getCrypto()
         set(() => ({
@@ -23,7 +24,8 @@ export const useCryptoStore = create<CryptoStore>()(devtools((set) => ({
 
     fetchData: async (pair) => {
         const result = await fetchCurrentCryptoPrice(pair)
-        console.log(result);
-        
+        set(() => ({
+            result
+        }))
     }
 })))
