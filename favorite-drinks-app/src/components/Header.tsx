@@ -5,7 +5,7 @@ export default function Header() {
 
     const { pathname } = useLocation()
     const isHome = useMemo(() => pathname === '/', [pathname])
-    
+
     return (
         <header className="bg-slate-700">
             <div className="mx-auto container px-5 py-10">
@@ -30,14 +30,14 @@ export default function Header() {
                         </NavLink>
                     </nav>
                 </div>
-                { isHome && (
+                {isHome && (
                     <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-15 p-10 rounded-lg">
-                        <div className="space-y-4">
-                            <label 
+                        <div className="space-y-4 mb-3">
+                            <label
                                 htmlFor="ingredient"
                                 className="block text-white uppercase font-extrabold text-lg"
                             >Nombre o Ingredientes</label>
-                            <input 
+                            <input
                                 type="text"
                                 id="ingredients"
                                 name="ingredients"
@@ -45,6 +45,23 @@ export default function Header() {
                                 placeholder="Nombre o ingrediente."
                             />
                         </div>
+                        <div className="space-y-4">
+                            <label
+                                htmlFor="ingredient"
+                                className="block text-white uppercase font-extrabold text-lg"
+                            >Categoría</label>
+                            <select
+                                id="category"
+                                name="category"
+                                className="p-3 w-full rounded-lg focus:outline-none bg-white text-gray-900 mb-8"
+                            >
+                                <option value="1">-- Seleccione --</option>
+                            </select>
+                        </div>
+                        <input type="submit"
+                            value="Buscar Recetas"
+                            className="cursor-pointer bg-orange-800 hover:bg-orange-900 text-white font-extrabold w-full p-2 rounded-lg uppercase"
+                        />
                     </form>
                 )}
             </div>
