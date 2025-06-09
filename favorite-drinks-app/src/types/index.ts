@@ -4,3 +4,4 @@ import type { categoriesAPIResponseSchema, DrinksAPIResponse, SearchFilterSchema
 export type Categories = z.infer<typeof categoriesAPIResponseSchema>
 export type SearchFilter = z.infer<typeof SearchFilterSchema>
 export type Drinks = z.infer<typeof DrinksAPIResponse>
+export type Drink = z.infer<typeof DrinksAPIResponse>

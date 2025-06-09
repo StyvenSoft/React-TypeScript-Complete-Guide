@@ -1,7 +1,25 @@
+import { useMemo } from "react"
+import { useAppStore } from "../stores/useAppStore"
+import DrinkCard from "../components/DrinkCard"
+
 export default function indexPage() {
+  const drinks = useAppStore((state) => state.drinks)
+  const hasDrinks = useMemo(() => drinks.drinks.length, [drinks])
   return (
     <>
-      <h1>Home</h1>
+      <h1 className="text-4xl font-extrabold">Recetas</h1>
+      {hasDrinks ? (
+        <>
+          {drinks.drinks.map(() => (
+            <DrinkCard
+              key={drinks.idDrink}
+              drink={drink}
+            />
+          ))}
+        </>
+      ) : (
+        <p className="my-10 text-center text-2xl">No hay resultados</p>
+      )}
     </>
   )
 }
