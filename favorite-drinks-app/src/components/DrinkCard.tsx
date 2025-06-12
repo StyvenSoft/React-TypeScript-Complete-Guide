@@ -6,6 +6,11 @@ type DrinkCardProps = {
 
 export default function DrinkCard({drink} : DrinkCardProps) {
     return (
-        <h1>{drink.drinks}</h1>
+        <div className="border shadow-lg">
+            <div>
+                <img src={drink.strDrinkThumb} alt={`Imagen de ${drink.strDrink}`} />
+            </div>
+            <h2>{drink.strDrink}</h2>
+        </div>
     )
 }

@@ -10,9 +10,9 @@ export default function indexPage() {
       <h1 className="text-4xl font-extrabold">Recetas</h1>
       {hasDrinks ? (
         <>
-          {drinks.drinks.map(() => (
+          {drinks.drinks.map((drink) => (
             <DrinkCard
-              key={drinks.idDrink}
+              key={drink.idDrink}
               drink={drink}
             />
           ))}
