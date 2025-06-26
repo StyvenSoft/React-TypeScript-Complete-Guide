@@ -58,6 +58,12 @@ export default function Header() {
                                     : 'text-white uppercase font-bold'}>
                             Favoritos
                         </NavLink>
+                        <NavLink to="/RecipeAI"
+                            className={({ isActive }) =>
+                                isActive ? 'text-orange-400 uppercase font-bold'
+                                    : 'text-white uppercase font-bold'}>
+                            Receta con IA
+                        </NavLink>
                     </nav>
                 </div>
                 {isHome && (
