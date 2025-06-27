@@ -1,7 +1,13 @@
+import { streamText } from 'ai'
+import { openrouter } from '../lib/ai';
 
 export default {
     async generateRecipe(prompt: string) {
         console.log(prompt);
-        
+        const result = streamText({
+            model: openrouter('meta-llama/llama-3.3-70b-instruct:free'),
+            prompt: prompt
+        })       
+        return result.textStream
     }
 }
